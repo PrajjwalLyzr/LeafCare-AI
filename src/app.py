@@ -40,7 +40,7 @@ if image_file:
         image_file_path = os.path.join(ImageData, file_name)
         st.image(image=image_file_path, width=100)
         st.markdown('---')
-        with st.spinner("Diagnosis is been processing"):
+        with st.spinner("🤖 Diagnosis is been processing"):
             base64_image = encode_image(image_file_path)
             leafimageDescription = gpt_vision_call(openai_api_key=os.getenv('OPENAI_API_KEY'),
                                                base64_image=base64_image)
@@ -73,8 +73,6 @@ if image_file:
                     # ) 
 
                     
-                
-                    
                     chat_json = ChatRequest(
                         user_id=User_id,
                         agent_id=Agent_id,
@@ -85,9 +83,8 @@ if image_file:
                     recommendations = api_client.chat_with_agent(json_body=chat_json)
 
 
-                    with st.spinner('🤖 Agent Generating the Recommendations'):
-                        if recommendations:
-                            st.write(recommendations['response']) 
+                    if recommendations:
+                        st.write(recommendations['response']) 
 
 
 else:
